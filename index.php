@@ -189,6 +189,8 @@
     </main>
 
     <?php require_once './el-footer.php' ?>
+
+    <script src="./scripts/getCarData.js"></script>
   </body>
 
 </html>

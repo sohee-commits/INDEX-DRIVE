@@ -37,7 +37,8 @@ if (!isset($_SESSION["user_id"])) {
           <div class="conc">
             <div class="group">
               <label for="mark" role="label">Марка</label>
-              <select required name="mark" id="mark" onchange="fetchCarDetails()">
+              <select required name="mark" id="mark">
+                <option value="null" selected>Выбрать</option>
                 <?php
                 require_once './_config.php';
                 $sql = "SELECT DISTINCT mark FROM cars";
@@ -51,16 +52,8 @@ if (!isset($_SESSION["user_id"])) {
             </div>
             <div class="group">
               <label for="model" role="label">Модель</label>
-              <select required name="model" id="model" onchange="fetchCarDetails()">
-                <?php
-                require_once './_config.php';
-                $sql = "SELECT DISTINCT model FROM cars";
-                $result = $conn->query($sql);
-
-                while ($row = $result->fetch_assoc()) {
-                  echo '<option value="' . $row['model'] . '">' . $row['model'] . '</option>';
-                }
-                ?>
+              <select required name="model" id="model">
+                <!-- динамическая генерация моделей на основе выбранной марки -->
               </select>
             </div>
           </div>
@@ -155,7 +148,7 @@ if (!isset($_SESSION["user_id"])) {
               </div>
               <div class="group">
                 <label for="cards" role="label">Номер</label>
-                <select name="cards" id="cards" onchange="fetchCardDetails()">
+                <select name="cards" id="cards">
                   <?php
                   $stmt = $conn->prepare("SELECT number FROM cards WHERE _user_id = ?");
                   $stmt->bind_param("i", $user_id);
@@ -165,6 +158,8 @@ if (!isset($_SESSION["user_id"])) {
                   while ($row = $result->fetch_assoc()) {
                     echo '<option value="' . $row['number'] . '">' . $row['number'] . '</option>';
                   }
+                  
+                  echo '<option value="null" selected>Выбрать</option>';
                   ?>
                 </select>
               </div>
@@ -179,7 +174,8 @@ if (!isset($_SESSION["user_id"])) {
 
     <?php require_once './el-footer.php'; ?>
 
-    <script src="booking.js"></script>
+    <script src="./scripts/getCarData.js"></script>
+    <script src="./scripts/booking.js"></script>
 
   </body>
 

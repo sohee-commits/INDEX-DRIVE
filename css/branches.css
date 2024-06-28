@@ -136,3 +136,29 @@ main {
 	font-size: var(--sz-xs);
 	color: var(--grey--d);
 }
+
+@media (max-width: 1024px) {
+	.map .cars {
+		grid-template-columns: 1fr;
+	}
+
+	.map .car > img {
+		height: 12rem;
+	}
+}
+
+@media (max-width: 768px) {
+	.maps {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 475px) {
+	main {
+		padding: var(--sz-s);
+	}
+
+	.map .car > img {
+		height: 10rem;
+	}
+}

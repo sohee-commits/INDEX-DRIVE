@@ -194,6 +194,10 @@ footer nav a:hover {
 	text-decoration: underline;
 }
 
+header .btn-secondary:hover {
+	filter: brightness(0.95);
+}
+
 footer {
 	padding: var(--sz-l);
 
@@ -220,6 +224,7 @@ footer ul {
 @media (max-width: 768px) {
 	.inner-heading {
 		flex-direction: column;
+		align-items: flex-start;
 	}
 
 	.inner-heading h1 {
