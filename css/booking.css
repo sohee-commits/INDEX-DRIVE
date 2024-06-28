@@ -1,29 +1,93 @@
 @import url('./main.css');
 
-:root {
-	/* цвета */
+main {
+	padding: var(--sz-m) var(--sz-l);
+	width: 100%;
 
-	/* оттенки ч/б */
-	--black: #212529;
-	--grey--d: #b1a7a6;
-	--grey--l: #f5f3f4;
-	--white: #fdfdfd;
-	/* основной */
-	--primary-c: #c71f37;
-	--primary-c--d: #83434f;
-	/* дополнительные */
-	--green: #708d81;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 
-	/* размеры */
+h2 {
+	padding: 0 var(--sz-s) var(--sz-xxs) var(--sz-s);
+	margin-bottom: var(--sz-m);
 
-	/* 64px */
-	--sz-l: 4rem;
-	/* 32px */
-	--sz-m: 2rem;
-	/* 16px */
-	--sz-s: 1rem;
-	/* 14px */
-	--sz-xs: 0.875rem;
-	/* 8px */
-	--sz-xxs: 0.5rem;
+	text-align: center;
+	border-bottom: 0.1rem solid var(--primary-c);
+}
+
+h3 {
+	font-size: 1.25rem;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--sz-m);
+}
+
+form * {
+	width: 100%;
+}
+
+.img-sales {
+	height: 12rem;
+
+	background-image: url('../assets/booking/sales.png');
+	background-size: cover;
+	background-position: 0 0;
+
+	border-radius: var(--sz-s);
+}
+
+.card {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--sz-m);
+}
+
+.bank-card {
+	height: fit-content;
+
+	display: flex;
+	flex-direction: column;
+	gap: var(--sz-m);
+}
+
+.card img {
+	height: 100%;
+
+	border-radius: var(--sz-s);
+	object-fit: cover;
+	object-position: 0 0;
+}
+
+@media (max-width: 950px) {
+	.card {
+		grid-template-columns: 1fr;
+	}
+
+	.card img {
+		display: none;
+	}
+}
+
+@media (max-width: 600px) {
+	.conc {
+		flex-direction: column;
+	}
+
+	main {
+		padding: var(--sz-s);
+	}
+
+	.booking-form,
+	form {
+		width: 100%;
+	}
+
+	.img-sales {
+		height: 6rem;
+	}
 }

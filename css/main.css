@@ -109,9 +109,29 @@ input:not(input[type='radio']) {
 	background-color: var(--grey--l);
 	border: none;
 	border-radius: var(--sz-xxs);
-	appearance: none;
 	font-size: var(--sz-s);
+}
+
+select {
+	appearance: none;
 	cursor: pointer;
+}
+
+input::placeholder {
+	color: var(--grey--d);
+}
+
+.group {
+	flex: 1;
+
+	display: flex;
+	flex-direction: column;
+	gap: var(--sz-xxs);
+}
+
+.conc {
+	display: flex;
+	gap: var(--sz-m);
 }
 
 .group:has(select) {
@@ -133,6 +153,22 @@ input:not(input[type='radio']) {
 
 	background-image: url('../assets/icons/arrow-down--select.png');
 	background-size: contain;
+}
+
+.inner-heading {
+	display: flex;
+	align-items: flex-end;
+	gap: var(--sz-m);
+}
+
+.inner-heading h1 {
+	flex: 1;
+	font-size: var(--sz-l);
+}
+
+.inner-heading p {
+	flex: 1;
+	font-size: 1.25rem;
 }
 
 header {
@@ -182,6 +218,18 @@ footer ul {
 }
 
 @media (max-width: 768px) {
+	.inner-heading {
+		flex-direction: column;
+	}
+
+	.inner-heading h1 {
+		font-size: 1.25rem;
+	}
+
+	.inner-heading p {
+		font-size: 1.1rem;
+	}
+
 	header {
 		flex-direction: column;
 	}

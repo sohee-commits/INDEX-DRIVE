@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <?php require_once './el-head.php' ?>
@@ -13,22 +15,59 @@
           <div class="group">
             <label for="mark" role="label">Марка</label>
             <select name="mark" id="mark">
-              <option value="Porsche" selected>Porsche</option>
-              <option value="Tank">Tank</option>
-              <option value="zeekr">zeekr</option>
-              <option value="Kia">Kia</option>
-              <option value="Ford">Ford</option>
+              <?php
+              require_once './_config.php ';
+              $sql = "SELECT mark FROM cars";
+              $result = $conn->query($sql);
+              $i = 1;
+
+              while ($row = $result->fetch_assoc()) {
+                if ($i == 1) {
+                  echo '<option value="'
+                    . $row['mark']
+                    . '" selected>'
+                    . $row['mark']
+                    . '</option>';
+                } else {
+                  echo '<option value="'
+                    . $row['mark']
+                    . '">'
+                    . $row['mark']
+                    . '</option>';
+
+                }
+                $i++;
+              }
+              ?>
             </select>
           </div>
           <div class="group">
             <label for="model" role="label">Модель</label>
             <select name="model" id="model">
-              <option value="Panamera" selected>Panamera</option>
-              <option value="500">500</option>
-              <option value="001">001</option>
-              <option value="Panamera GTS">Panamera GTS</option>
-              <option value="RIO">RIO</option>
-              <option value="Mustang">Mustang</option>
+              <?php
+              require_once './_config.php ';
+              $sql = "SELECT model FROM cars";
+              $result = $conn->query($sql);
+              $i = 1;
+
+              while ($row = $result->fetch_assoc()) {
+                if ($i == 1) {
+                  echo '<option value="'
+                    . $row['model']
+                    . '" selected>'
+                    . $row['model']
+                    . '</option>';
+                } else {
+                  echo '<option value="'
+                    . $row['model']
+                    . '">'
+                    . $row['model']
+                    . '</option>';
+
+                }
+                $i++;
+              }
+              ?>
             </select>
           </div>
           <div class="group" id="class-con">
@@ -75,7 +114,7 @@
             . $row['mark']
             . ' '
             . $row['model']
-            . ".png' alt='превью автом'>
+            . ".png' alt='превью'>
           <div class='car-text-body'>
             <h4>"
             . $row['mark']

@@ -1,0 +1,138 @@
+@import url('./main.css');
+
+:root {
+	/* цвета */
+
+	/* оттенки ч/б */
+	--black: #212529;
+	--grey--d: #b1a7a6;
+	--grey--l: #f5f3f4;
+	--white: #fdfdfd;
+	/* основной */
+	--primary-c: #c71f37;
+	--primary-c--d: #83434f;
+	/* дополнительные */
+	--green: #708d81;
+
+	/* размеры */
+
+	/* 64px */
+	--sz-l: 4rem;
+	/* 32px */
+	--sz-m: 2rem;
+	/* 16px */
+	--sz-s: 1rem;
+	/* 14px */
+	--sz-xs: 0.875rem;
+	/* 8px */
+	--sz-xxs: 0.5rem;
+}
+
+main {
+	padding: var(--sz-m) var(--sz-l);
+
+	background-color: var(--grey--l);
+}
+
+.inner-heading {
+	margin-bottom: 3rem;
+}
+
+.maps {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--sz-m);
+}
+
+.map {
+	padding: 1.5rem;
+	height: fit-content;
+
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+
+	background-color: var(--white);
+	border-radius: var(--sz-s);
+	cursor: pointer;
+}
+
+.map address p {
+	margin-bottom: var(--sz-s);
+
+	font-style: normal;
+	font-size: var(--sz-s);
+}
+
+.map address img {
+	width: 100%;
+	height: 15rem;
+
+	object-fit: cover;
+	object-position: center;
+	border-radius: var(--sz-xs);
+}
+
+.map > img {
+	width: var(--sz-m);
+	height: var(--sz-m);
+	margin: 0 auto;
+}
+
+.map .cars {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.25rem;
+}
+
+.map .cars.hidden {
+	display: none;
+}
+
+.map .car {
+	padding: var(--sz-s);
+
+	display: flex;
+	flex-direction: column;
+	gap: var(--sz-s);
+
+	background-color: var(--white);
+	border-radius: var(--sz-s);
+}
+
+.map .car > img {
+	width: 100%;
+	height: 5rem;
+
+	object-fit: cover;
+	object-position: center;
+	border-radius: var(--sz-xs);
+}
+
+.map .car h4 {
+	padding-bottom: var(--sz-xxs);
+	font-weight: 400;
+}
+
+.map .car .qualities {
+	display: flex;
+	gap: 0.75rem;
+}
+
+.map .car .qualities div {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+}
+
+.map .car .qualities img {
+	width: var(--sz-s);
+	height: var(--sz-s);
+
+	object-fit: contain;
+}
+
+.map .car .faded-text {
+	font-size: var(--sz-xs);
+	color: var(--grey--d);
+}

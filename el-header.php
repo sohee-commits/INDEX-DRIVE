@@ -15,7 +15,22 @@
     </ul>
   </nav>
   <menu>
-    <button class="btn-link"><a href="./login.php">Вход</a></button>
-    <button class="btn-secondary"><a href="./register.php">Регистрация</a></button>
+    <?php
+    if (isset($_SESSION["user_id"])) {
+      echo '
+      <button class="btn-secondary">
+        <a href="./profile.php">Профиль</a>
+      </button>';
+    } else {
+      echo '
+      <button class="btn-link">
+        <a href="./login.php">Вход</a>
+      </button>
+      <button class="btn-secondary">
+        <a href="./register.php">Регистрация</a>
+      </button>
+      ';
+    }
+    ?>
   </menu>
 </header>
