@@ -139,10 +139,10 @@ if (!isset($_SESSION["user_id"])) {
                 . $car_details['model']
                 . ".png' alt='превью машины'>
                 </div>
-                <div class='book-info'>
-                  <div class='group'>
-                    <p role='label'>Дата</p>
-                    <p>"
+                <div class
+                <div class='group'>
+                  <p role='label'>Дата</p>
+                  <p>"
                 . str_replace('-', '.', $datetime_start->format('d-m-Y'))
                 . " - "
                 . str_replace('-', '.', $datetime_end->format('d-m-Y'))
@@ -151,11 +151,9 @@ if (!isset($_SESSION["user_id"])) {
                 . " д.)"
                 . "</p>
                   </div>
-                </div>
-                <div class='book-info'>
                   <div class='group'>
-                    <p role='label'>Филиал</p>
-                    <p>"
+                  <p role='label'>Филиал</p>
+                  <p>"
                 . $branch_details['name']
                 . "</p>
                   </div>

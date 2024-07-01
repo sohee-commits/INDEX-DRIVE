@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if ($stmt->execute()) {
     echo "Booking successfully added.";
-    header("Location: ../profile.php");
+    header("Location: ../history.php");
     exit;
   } else {
     echo "Error: " . $stmt->error;
