@@ -17,7 +17,7 @@ if (!isset($_SESSION["user_id"])) {
     <main>
       <h2 class="fw-m">Бронирование автомобиля</h2>
       <section class="booking-form">
-        <form action="./scripts/history.php" method="post">
+        <form action="./scripts/insCarData.php" method="post">
           <h3 class="fw-m">Данные автомобиля</h3>
           <div class="conc">
             <div class="group">
