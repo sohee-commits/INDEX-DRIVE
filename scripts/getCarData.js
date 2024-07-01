@@ -46,7 +46,7 @@ markSelect.addEventListener(`change`, function () {
 
 			carIdElement.textContent = `-`;
 			carNumberElement.textContent = `-`;
-			carPriceElement.textContent = `-`;
+			carPriceElement.value = `-`;
 
 			branchSelect.innerHTML = ``;
 		})
@@ -76,7 +76,7 @@ modelSelect.addEventListener(`change`, function () {
 
 			carIdElement.value = data._car_id;
 			carNumberElement.textContent = data.number;
-			carPriceElement.textContent = numberFormat(data.price, 0, ``, ` `) + ` ₽`;
+			carPriceElement.value = numberFormat(data.price, 0, ``, ` `) + ` ₽`;
 
 			return fetch(
 				`./scripts/getBranches.php?car_id=` + encodeURIComponent(data._car_id)

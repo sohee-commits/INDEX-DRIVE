@@ -146,7 +146,7 @@ if (!isset($_SESSION["user_id"])) {
                 . str_replace('-', '.', $datetime_start->format('d-m-Y'))
                 . " - "
                 . str_replace('-', '.', $datetime_end->format('d-m-Y'))
-                . "("
+                . " ("
                 . $num_days
                 . " д.)"
                 . "</p>
@@ -163,10 +163,9 @@ if (!isset($_SESSION["user_id"])) {
               </section>
               ";
             }
+            $stmt_car->close();
+            $stmt_branch->close();
           }
-
-          $stmt_car->close();
-          $stmt_branch->close();
           ?>
         </section>
       </section>

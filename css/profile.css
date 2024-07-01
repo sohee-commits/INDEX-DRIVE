@@ -57,7 +57,8 @@ aside {
 .history {
 	width: 100%;
 
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
 	gap: var(--sz-m);
 }
 
@@ -67,6 +68,7 @@ aside {
 
 aside {
 	padding: var(--sz-s);
+	height: fit-content;
 
 	display: flex;
 	flex-direction: column;
@@ -123,4 +125,30 @@ aside .bonus {
 	object-position: center;
 	object-fit: cover;
 	border-radius: var(--sz-xs);
+}
+
+@media (max-width: 1430px) {
+	.history {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 760px) {
+	.info {
+		flex-direction: column;
+	}
+}
+@media (max-width: 470px) {
+	main {
+		padding: var(--sz-s);
+	}
+
+	aside {
+		width: 100%;
+		min-width: none;
+	}
+
+	.booking-item img {
+		height: 8rem;
+	}
 }

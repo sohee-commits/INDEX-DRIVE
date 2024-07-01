@@ -14,14 +14,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $dateEnd = $_POST['date_end'];
   $userId = $_SESSION['user_id'];
 
-  $sql = "INSERT INTO booking (_car_id, _branch_id, date_start, date_end, _user_id) VALUES (?, ?, ?, ?, ?)";
-  $stmt = $conn->prepare($sql);
+  $datetimeStart = new DateTime($dateStart);
+  $datetimeEnd = new DateTime($dateEnd);
+  $interval = $datetimeStart->diff($datetimeEnd);
+  $numDays = $interval->days;
 
-  if ($stmt === false) {
-    die('Prepare failed: ' . htmlspecialchars($conn->error));
+  $discount = 0;
+  if ($numDays > 3) {
+    $additionalDays = $numDays - 3;
+    $discount = min($additionalDays / 3 * 5, 25);
   }
 
-  $stmt->bind_param('iissi', $carId, $branchId, $dateStart, $dateEnd, $userId);
+  $carPrice = 0;
+  $carSql = "SELECT price FROM cars WHERE _car_id = ?";
+  $stmtCar = $conn->prepare($carSql);
+  $stmtCar->bind_param("i", $carId);
+  $stmtCar->execute();
+  $resultCar = $stmtCar->get_result();
+  if ($rowCar = $resultCar->fetch_assoc()) {
+    $carPrice = $rowCar['price'];
+  }
+
+  $totalPrice = $carPrice * $numDays * (1 - ($discount / 100));
+
+
+  // Insert into booking table
+  $sql = "INSERT INTO booking (_car_id, _branch_id, date_start, date_end, _user_id, price) VALUES (?, ?, ?, ?, ?, ?)";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param('iissid', $carId, $branchId, $dateStart, $dateEnd, $userId, $totalPrice);
 
   if ($stmt->execute()) {
     echo "Booking successfully added.";
@@ -30,5 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     echo "Error: " . $stmt->error;
   }
+
+  $stmtCar->close();
+  $stmt->close();
 }
 ?>
