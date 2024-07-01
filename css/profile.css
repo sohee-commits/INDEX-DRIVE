@@ -1,1 +1,29 @@
 @import url('./main.css');
+
+:root {
+	/* цвета */
+
+	/* оттенки ч/б */
+	--black: #212529;
+	--grey--d: #b1a7a6;
+	--grey--l: #f5f3f4;
+	--white: #fdfdfd;
+	/* основной */
+	--primary-c: #c71f37;
+	--primary-c--d: #83434f;
+	/* дополнительные */
+	--green: #708d81;
+
+	/* размеры */
+
+	/* 64px */
+	--sz-l: 4rem;
+	/* 32px */
+	--sz-m: 2rem;
+	/* 16px */
+	--sz-s: 1rem;
+	/* 14px */
+	--sz-xs: 0.875rem;
+	/* 8px */
+	--sz-xxs: 0.5rem;
+}

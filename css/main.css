@@ -42,6 +42,16 @@
 	font-size: var(--sz-xs);
 }
 
+*[role='text'] {
+	padding: 0 !important;
+	margin: 0 !important;
+
+	font-size: var(--sz-s) !important;
+	color: var(--black) !important;
+	border: none !important;
+	background: none !important;
+}
+
 .fw-m {
 	font-weight: 500;
 }

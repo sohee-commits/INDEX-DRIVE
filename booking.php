@@ -17,12 +17,12 @@ if (!isset($_SESSION["user_id"])) {
     <main>
       <h2 class="fw-m">Бронирование автомобиля</h2>
       <section class="booking-form">
-        <form action="history.php" method="post">
+        <form action="./scripts/history.php" method="post">
           <h3 class="fw-m">Данные автомобиля</h3>
           <div class="conc">
             <div class="group">
               <p role="label">Идентификатор автомобиля</p>
-              <p id="car_id">-</p>
+              <input required name="car_id" id="car_id" role="text" placeholder="-">
             </div>
             <div class="group">
               <p role="label">Номер машины</p>
@@ -148,7 +148,7 @@ if (!isset($_SESSION["user_id"])) {
               </div>
               <div class="group">
                 <label for="cards" role="label">Номер</label>
-                <select name="cards" id="cards">
+                <select required name="cards" id="cards">
                   <?php
                   $stmt = $conn->prepare("SELECT number FROM cards WHERE _user_id = ?");
                   $stmt->bind_param("i", $user_id);
@@ -158,7 +158,7 @@ if (!isset($_SESSION["user_id"])) {
                   while ($row = $result->fetch_assoc()) {
                     echo '<option value="' . $row['number'] . '">' . $row['number'] . '</option>';
                   }
-                  
+
                   echo '<option value="null" selected>Выбрать</option>';
                   ?>
                 </select>

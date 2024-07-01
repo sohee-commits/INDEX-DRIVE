@@ -4,7 +4,7 @@ require_once '../_config.php';
 if (isset($_GET['car_id'])) {
   $carId = $_GET['car_id'];
 
-  $sql = "SELECT name FROM branches WHERE _car_id_1 = ? OR _car_id_2 = ? OR _car_id_3 = ?";
+  $sql = "SELECT _branch_id, name FROM branches WHERE _car_id_1 = ? OR _car_id_2 = ? OR _car_id_3 = ?";
   $stmt = $conn->prepare($sql);
   if ($stmt === false) {
     die('Prepare failed: ' . htmlspecialchars($conn->error));
@@ -16,7 +16,7 @@ if (isset($_GET['car_id'])) {
 
   $branches = array();
   while ($row = $result->fetch_assoc()) {
-    $branches[] = $row['name'];
+    $branches[] = $row;
   }
 
   header('Content-Type: application/json');
@@ -26,3 +26,4 @@ if (isset($_GET['car_id'])) {
   echo json_encode(["error" => "Invalid request"]);
   exit;
 }
+?>
