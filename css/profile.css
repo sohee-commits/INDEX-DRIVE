@@ -27,3 +27,100 @@
 	/* 8px */
 	--sz-xxs: 0.5rem;
 }
+
+.red {
+	color: var(--primary-c);
+}
+
+.faded-text {
+	font-size: var(--sz-xs);
+	color: var(--grey--d);
+}
+
+main {
+	padding: var(--sz-m) var(--sz-l);
+
+	background-color: var(--grey--l);
+}
+
+.info {
+	width: 100%;
+
+	display: flex;
+	gap: var(--sz-m);
+}
+
+aside {
+	min-width: 15.5rem;
+}
+
+.history {
+	width: 100%;
+
+	display: flex;
+	gap: var(--sz-m);
+}
+
+.inner-heading {
+	margin-bottom: var(--sz-m);
+}
+
+aside {
+	padding: var(--sz-s);
+
+	display: flex;
+	flex-direction: column;
+	gap: var(--sz-m);
+
+	border-radius: var(--sz-s);
+	background-color: var(--white);
+}
+
+aside hr {
+	width: 100%;
+	height: 1px;
+
+	border: none;
+	background-color: var(--grey--d);
+}
+
+.booking-item {
+	padding: 1.5rem;
+	flex: 1;
+
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+
+	background-color: var(--white);
+	border-radius: var(--sz-s);
+}
+
+.booking-item .card-body {
+	display: inherit;
+	flex-direction: inherit;
+	gap: var(--sz-s);
+}
+
+.booking-item .heading {
+	display: inherit;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+.booking-item .car-name {
+	font-size: 1.25rem;
+}
+
+.booking-item .car-id,
+aside .bonus {
+	color: var(--grey--d);
+}
+
+.booking-item img {
+	height: 15rem;
+
+	object-position: center;
+	object-fit: cover;
+	border-radius: var(--sz-xs);
+}

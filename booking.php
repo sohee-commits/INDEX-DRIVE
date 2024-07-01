@@ -31,7 +31,7 @@ if (!isset($_SESSION["user_id"])) {
           </div>
           <div class="group">
             <p role="label">Стоимость бронирования за день</p>
-            <p id="car_price">-</p>
+            <input required name="car_price" id="car_price" role="text" placeholder="-">-</input>
           </div>
           <!-- марка и модель -->
           <div class="conc">
