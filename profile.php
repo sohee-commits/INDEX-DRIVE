@@ -15,8 +15,8 @@ if (!isset($_SESSION["user_id"])) {
     <main>
       <div class="inner-heading">
         <h1 class="fw-m">Личный кабинет</h1>
-        <form action="logout.php" method="post">
-          <button class="btn-link red" class="logout">Выйти</button>
+        <form action="./scripts/logout.php" method="post">
+          <button type="submit" name="logout" class="btn-link red logout">Выйти</button>
         </form>
       </div>
       <section class="info">
@@ -119,7 +119,7 @@ if (!isset($_SESSION["user_id"])) {
               $branch_details = $result_branch->fetch_assoc();
 
               echo "
-              <section class='booking-item'>
+              <section class='item'>
                 <div class='card-body'>
                   <div class='heading'>
                     <p class='car-name'>"

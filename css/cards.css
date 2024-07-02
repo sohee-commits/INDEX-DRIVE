@@ -1,0 +1,84 @@
+@import url('./profile.css');
+
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.inner-heading {
+	width: 100%;
+}
+
+.item form {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: var(--sz-s);
+}
+
+.item .heading {
+	align-items: flex-end;
+	justify-content: flex-start;
+	gap: var(--sz-xxs);
+	font-size: 1.25rem;
+}
+
+.item #card-cv {
+	font-size: var(--sz-s);
+}
+
+.item small {
+	font-size: var(--sz-xs);
+	color: var(--green);
+}
+
+main img {
+	margin: var(--sz-l);
+	max-width: 30%;
+}
+
+dialog {
+	margin: var(--sz-l) auto;
+	padding: var(--sz-s);
+	width: 30%;
+
+	border-radius: var(--sz-s);
+	border: 1px solid var(--gray--d);
+}
+
+dialog form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--sz-s);
+}
+
+dialog button {
+	width: 100%;
+}
+
+@media (max-width: 768px) {
+	.item form {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+
+	main img {
+		max-width: 60%;
+	}
+
+	dialog {
+		width: 60%;
+	}
+}
+
+@media (max-width: 359px) {
+	.item .heading {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+
+	dialog {
+		width: 90%;
+	}
+}

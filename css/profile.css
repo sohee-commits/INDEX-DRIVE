@@ -58,7 +58,7 @@ aside {
 	background-color: var(--white);
 }
 
-.booking-item {
+.item {
 	padding: 1.5rem;
 	flex: 1;
 
@@ -70,28 +70,28 @@ aside {
 	border-radius: var(--sz-s);
 }
 
-.booking-item .card-body {
+.item .card-body {
 	display: inherit;
 	flex-direction: inherit;
 	gap: var(--sz-s);
 }
 
-.booking-item .heading {
+.item .heading {
 	display: inherit;
 	align-items: flex-start;
 	justify-content: space-between;
 }
 
-.booking-item .car-name {
+.item .car-name {
 	font-size: 1.25rem;
 }
 
-.booking-item .car-id,
+.item .car-id,
 aside .bonus {
 	color: var(--grey--d);
 }
 
-.booking-item img {
+.item img {
 	height: 15rem;
 
 	object-position: center;
@@ -120,7 +120,7 @@ aside .bonus {
 		min-width: none;
 	}
 
-	.booking-item img {
+	.item img {
 		height: 8rem;
 	}
 }

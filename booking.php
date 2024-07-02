@@ -175,7 +175,7 @@ if (!isset($_SESSION["user_id"])) {
     <?php require_once './el-footer.php'; ?>
 
     <script src="./scripts/getCarData.js"></script>
-    <script src="./scripts/booking.js"></script>
+    <script src="./scripts/getCardInfo.js"></script>
 
   </body>
 

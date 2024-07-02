@@ -61,7 +61,7 @@ if (!isset($_SESSION["user_id"])) {
             $branch_details = $result_branch->fetch_assoc();
 
             echo "
-            <section class='booking-item'>
+            <section class='item'>
               <div class='card-body'>
                 <div class='heading'>
                   <p class='car-name'>" . $car_details['mark'] . " " . $car_details['model'] . "</p>
