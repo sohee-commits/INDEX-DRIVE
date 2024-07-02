@@ -23,6 +23,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     die("Пароли не совпадают.");
   }
 
+  // Проверка, существует ли пользователь с данным номером телефона
+  $stmt = $conn->prepare("SELECT _user_id FROM users WHERE tel = ?");
+  $stmt->bind_param("s", $tel);
+  $stmt->execute();
+  $stmt->store_result();
+
+  if ($stmt->num_rows > 0) {
+    die("Пользователь с таким номером телефона уже существует.");
+  }
+
+  // Закрытие запроса проверки
+  $stmt->close();
+
   // Хеширование пароля
   $password_hashed = password_hash($password, PASSWORD_DEFAULT);
 
