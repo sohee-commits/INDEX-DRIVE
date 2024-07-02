@@ -34,7 +34,7 @@ if (!isset($_SESSION["user_id"])) {
 
         // Если нет бронирований, выводим сообщение об этом
         if ($result_booking->num_rows < 1) {
-          echo "<h2>В истории аренды пока ничего нет.</h2>";
+          echo "<h2>Здесь пока ничего нет</h2>";
         } else {
           // Выводим информацию о каждом бронировании
           while ($booking_info = $result_booking->fetch_assoc()) {
