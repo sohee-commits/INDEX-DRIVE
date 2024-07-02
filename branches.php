@@ -34,6 +34,14 @@ session_start();
           $cars[$car_row['_car_id']] = $car_row;
         }
 
+        $nameTranslations = array(
+          "г. Пермь, Комсомольский просп., д. 79" => "79-Komsomolsky-Prospekt-Perm",
+          "г. Пермь, ул. Монастырская, д. 11" => "11-Monastyrskaya St-Perm",
+          "г. Пермь, ул. Петропавловская, д. 25 а" => "25a-Petropavlovskaya-St-Perm",
+          "г. Пермь, ул. Ленина, д. 53" => "53-Lenina-St-Perm.",
+          "г. Пермь, ул. Пушкина, д. 107 а" => "107a-Pushkina-St-Perm",
+        );
+
         // Цикл по результатам запроса филиалов для вывода информации о каждом филиале
         while ($maps_row = $maps_result->fetch_assoc()) {
           echo "<section class='map open-cars'>";
@@ -41,7 +49,8 @@ session_start();
             . $maps_row['name']
             . "</p>"
             . "<img src='./assets/branches/"
-            . $maps_row['name']
+            // . $maps_row['name']
+            . $nameTranslations[$maps_row['name']]
             . ".png' alt='филиал на карте'></address>";
           echo "<img src='assets/icons/arrow-down.png' alt='посмотреть доступные в филиале машины'>";
 
