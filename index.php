@@ -179,6 +179,40 @@ $result = $conn->query($sql);
       }
       ?>
 
+      <section class="news">
+        <div class="heading">
+          <h2>Новости</h2>
+          <a href="#">
+            <img src="./assets/icons/arrow-up.png" alt="стрелка вверх: вернуться наверх">
+          </a>
+        </div>
+        <section class="news-list">
+          <section class="new" new-data="index-drive-opened">
+            <div class="card-body">
+              <p class="fw-b">Сайт</p>
+              <hr>
+              <h3 class="fw-sb">Открытие «Индекс Драйв»</h3>
+              <p>Мы рады объявить об открытии новой и энергичной компании по аренде автомобилей - «Индекс Драйв»!</p>
+            </div>
+            <button class="btn-secondary">
+              Подробнее
+            </button>
+          </section>
+          <section class="new" new-data="index-drive-site-opened">
+            <div class="card-body">
+              <p class="fw-b">Сайт</p>
+              <hr>
+              <h3 class="fw-sb">Наш сайт официально открыт</h3>
+              <p>Мы с радостью сообщаем об открытии нашего официального сайта! Теперь аренда автомобиля стала удобнее.
+              </p>
+            </div>
+            <button class="btn-secondary">
+              Подробнее
+            </button>
+          </section>
+        </section>
+      </section>
+
     </main>
 
     <?php require_once './el-footer.php'; // Подключаем футер страницы ?>
