@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (!isset($_SESSION["user_id"])) {
   header("Location: login.php");
   exit();
@@ -7,10 +8,12 @@ if (!isset($_SESSION["user_id"])) {
 
 require_once './_config.php';
 
+// Обработка запроса на удаление карты
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
   $cardId = $_POST['card_id'];
   $userId = $_SESSION['user_id'];
 
+  // Подготовка и выполнение SQL запроса для удаления карты
   $sql = "DELETE FROM cards WHERE _card_id = ? AND _user_id = ?";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("ii", $cardId, $userId);
@@ -25,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
   $stmt->close();
 }
 
+// Обработка запроса на добавление новой карты
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
   $cardNumber = $_POST['number'];
   $cardCV = $_POST['cv'];
@@ -32,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
   $cardDate = $_POST['date'];
   $userId = $_SESSION['user_id'];
 
+  // Определение типа карты по первым четырем цифрам номера карты
   $firstDigit = substr($cardNumber, 0, 4);
   $cardType = '';
   switch ($firstDigit) {
@@ -49,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
       break;
   }
 
+  // Подготовка и выполнение SQL запроса для добавления новой карты
   $sql = "INSERT INTO cards (number, cv, card_type, _user_id, name, date) VALUES (?, ?, ?, ?, ?, ?)";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("sssiss", $cardNumber, $cardCV, $cardType, $userId, $cardName, $cardDate);
@@ -82,17 +88,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
 
         $user_id = $_SESSION['user_id'];
 
+        // Получение списка карт пользователя
         $sql = "SELECT _card_id, number, cv, card_type FROM cards WHERE _user_id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
         $result = $stmt->get_result();
 
+        // Вывод сообщения, если пользователь еще не добавил ни одной карты
         if ($result->num_rows < 1) {
           echo "
           <h2>У вас нет зарегистрированных карт.</h2>
           ";
         } else {
+          // Вывод списка карт пользователя
           while ($cards = $result->fetch_assoc()) {
             echo "
             <section class='item'>
@@ -101,13 +110,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
                 <div class='heading'>
                   <p>" . htmlspecialchars($cards['card_type']) . "</p> 
                   <p class='card-number' data-full-number='" . htmlspecialchars($cards['number']) . "'>"
-              . str_repeat('*', 4)
+              . str_repeat('*', 4) // Первые четыре цифры скрываются символами '*'
               . " "
-              . str_repeat('*', 4)
+              . str_repeat('*', 4) // Следующие четыре цифры скрываются символами '*'
               . " "
-              . str_repeat('*', 4)
+              . str_repeat('*', 4) // Следующие четыре цифры скрываются символами '*'
               . " "
-              . substr($cards['number'], -4)
+              . substr($cards['number'], -4) // Отображение последних четырех цифр номера карты
               . "
                   </p>
                   <p id='card-cv'>/ " . htmlspecialchars($cards['cv']) . "</p>
@@ -120,8 +129,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
           }
         }
 
-        $stmt->close();
-        $conn->close();
+        $stmt->close(); // Закрываем подготовленное выражение 
+        $conn->close(); // Закрываем соединение с базой данных
         ?>
       </section>
       <img src="./assets/cards/poster.svg" alt="Индекс Драйв: На любой случай любой автомобиль">

@@ -14,14 +14,18 @@
       <li><a href="./index.php#trust">Акции</a></li>
     </ul>
   </nav>
+  <!-- меню пользователя -->
   <menu>
     <?php
+    // Проверяем, авторизован ли пользователь
     if (isset($_SESSION["user_id"])) {
+      // Если авторизован, показываем кнопку Профиль
       echo '
       <button class="btn-secondary">
         <a href="./profile.php">Профиль</a>
       </button>';
     } else {
+      // Если не авторизован, показываем кнопки Вход и Регистрация
       echo '
       <button class="btn-link">
         <a href="./login.php">Вход</a>

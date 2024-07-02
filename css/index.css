@@ -270,9 +270,14 @@ header .btn-secondary {
 }
 
 .new button.btn-secondary {
-	color: var(--white);
+	color: rgba(253, 253, 253, 0.5);
 	width: 100%;
 	font-weight: 500;
+}
+
+.new button.btn-secondary:hover {
+	border-color: transparent;
+	cursor: not-allowed;
 }
 
 [new-data] {

@@ -78,14 +78,16 @@ if (!isset($_SESSION["user_id"])) {
           <h3 class="fw-m">Ваши Данные</h3>
           <?php
           require_once './_config.php';
-          $user_id = $_SESSION['user_id'];
-          $sql = "SELECT * FROM users WHERE _user_id = ?";
-          $stmt = $conn->prepare($sql);
-          $stmt->bind_param("i", $user_id);
-          $stmt->execute();
-          $result = $stmt->get_result();
 
+          $user_id = $_SESSION['user_id']; // Получение идентификатора текущего пользователя из сессии
+          $sql = "SELECT * FROM users WHERE _user_id = ?";
+          $stmt = $conn->prepare($sql); // Подготовка запроса
+          $stmt->bind_param("i", $user_id); // Привязка параметра (идентификатор пользователя)
+          $stmt->execute(); // Выполнение запроса
+          $result = $stmt->get_result(); // Получение результата запроса
+          
           if ($row = $result->fetch_assoc()) {
+            // Вывод информации о пользователе, если данные получены
             echo '
             <div class="conc">
                 <div class="group">
@@ -150,17 +152,20 @@ if (!isset($_SESSION["user_id"])) {
                 <label for="cards" role="label">Номер</label>
                 <select required name="cards" id="cards">
                   <?php
+                  // Запрос к базе данных для получения номеров банковских карт текущего пользователя
                   $stmt = $conn->prepare("SELECT number FROM cards WHERE _user_id = ?");
-                  $stmt->bind_param("i", $user_id);
-                  $stmt->execute();
-                  $result = $stmt->get_result();
-
+                  $stmt->bind_param("i", $user_id); // Привязка параметра (идентификатор пользователя)
+                  $stmt->execute(); // Выполнение запроса
+                  $result = $stmt->get_result(); // Получение результата запроса
+                  
                   while ($row = $result->fetch_assoc()) {
+                    // Вывод опций для выпадающего списка с номерами карт
                     echo '<option value="' . $row['number'] . '">' . $row['number'] . '</option>';
                   }
 
-                  echo '<option value="null" selected>Выбрать</option>';
+                  echo '<option value="null" selected>Выбрать</option>'; // Добавление стандартной опции "Выбрать"
                   ?>
+
                 </select>
               </div>
             </div>

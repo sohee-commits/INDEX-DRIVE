@@ -1,58 +1,52 @@
 <?php
-
 require_once '../_config.php';
 
 if (isset($_POST['login']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
-  // получение данных
+  // Получаем данные из формы и защищаем их от HTML и JavaScript инъекций
   $tel = htmlspecialchars($_POST['tel']);
   $password = htmlspecialchars($_POST['password']);
 
-  // подготовка
+  // Подготовка запроса к базе данных для получения ID пользователя и его пароля
   $stmt = $conn->prepare("SELECT _user_id, password FROM users WHERE tel = ?");
   $stmt->bind_param("s", $tel);
 
-  // извлечение
+  // Выполнение запроса и извлечение результата
   $stmt->execute();
   $result = $stmt->get_result();
   $user = $result->fetch_assoc();
 
-  // проверка есть ли такой пользователь
+  // Проверка наличия пользователя в базе данных
   if ($user) {
-    // проверка соответствия пароля
+    // Проверка соответствия введенного пароля хэшированному паролю в базе данных
     if (password_verify($password, $user['password'])) {
+      // Начало сессии для авторизации пользователя
       session_start();
       $_SESSION["user_id"] = $user["_user_id"];
-      header("Location: ../profile.php");
+      header("Location: ../profile.php"); // Перенаправление на профиль пользователя в случае успешной авторизации
       die();
     } else {
+      // Вывод страницы с сообщением о неверном пароле
       echo '
       <!DOCTYPE html>
       <html lang="en">
         <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <!-- икнока вкладки -->
           <link rel="shortcut icon" href="./assets/logo/IXD-black.svg" type="image/x-icon">
-          <!-- динамическое формирование названия вкладки -->
           <title>ИНДЕКС ДРАЙВ | Ошибка входа | Аренда эконом и премиум автомобилей в Перми онлайн
           </title>
-          <!-- динамическое подключение соответствующего файла стилей -->
           <link rel="stylesheet" href="../css/main.css">
-          <!-- шрифты -->
           <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-          <!-- основной -->
           <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet">
         </head>
 
         <body>
           <header>
-            <!-- динамический выбор логотипа в зависимости от текущей страницы -->
             <a href="./index.php">
               <img src="../assets/logo/IXD-black.svg" alt="логотип компании ИНДЕКС ДРАЙВ - IXD">
             </a>
-            <!-- навигация -->
             <nav>
               <ul>
                 <li><a href="../booking.php">Бронирование</a></li>
@@ -85,34 +79,28 @@ if (isset($_POST['login']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
       ';
     }
   } else {
+    // Вывод страницы с сообщением о том, что пользователя с таким номером телефона нет
     echo '
     <!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- икнока вкладки -->
         <link rel="shortcut icon" href="./assets/logo/IXD-black.svg" type="image/x-icon">
-        <!-- динамическое формирование названия вкладки -->
         <title>ИНДЕКС ДРАЙВ | Ошибка входа | Аренда эконом и премиум автомобилей в Перми онлайн
         </title>
-        <!-- динамическое подключение соответствующего файла стилей -->
         <link rel="stylesheet" href="../css/main.css">
-        <!-- шрифты -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <!-- основной -->
         <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet">
       </head>
 
       <body>
         <header>
-          <!-- динамический выбор логотипа в зависимости от текущей страницы -->
           <a href="./index.php">
             <img src="../assets/logo/IXD-black.svg" alt="логотип компании ИНДЕКС ДРАЙВ - IXD">
           </a>
-          <!-- навигация -->
           <nav>
             <ul>
               <li><a href="../booking.php">Бронирование</a></li>
@@ -145,6 +133,7 @@ if (isset($_POST['login']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     ';
   }
 
+  // Внедрение стилей непосредственно в случае вывода ошибки
   echo '
   <style>
     main {
@@ -164,5 +153,6 @@ if (isset($_POST['login']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
   $stmt->close();
 }
 
-// закрытие соединения
+// Закрытие соединения с базой данных
 $conn->close();
+?>

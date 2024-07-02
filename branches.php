@@ -19,18 +19,22 @@ session_start();
         <?php
         require_once './_config.php';
 
+        // Запрос для получения данных о филиалах
         $maps_sql = "SELECT name, _car_id_1, _car_id_2, _car_id_3 FROM branches";
         $maps_result = $conn->query($maps_sql);
 
         $cars = [];
 
+        // Запрос для получения данных о всех автомобилях
         $cars_sql = "SELECT _car_id, mark, model, class, price, year, rating FROM cars";
         $cars_result = $conn->query($cars_sql);
 
+        // Заполнение массива $cars данными об автомобилях для последующего использования
         while ($car_row = $cars_result->fetch_assoc()) {
           $cars[$car_row['_car_id']] = $car_row;
         }
 
+        // Цикл по результатам запроса филиалов для вывода информации о каждом филиале
         while ($maps_row = $maps_result->fetch_assoc()) {
           echo "<section class='map open-cars'>";
           echo "<address><p>"
@@ -41,7 +45,7 @@ session_start();
             . ".png' alt='филиал на карте'></address>";
           echo "<img src='assets/icons/arrow-down.png' alt='посмотреть доступные в филиале машины'>";
 
-          // Start cars section
+          // Начало секции вывода автомобилей в филиале
           echo "<section class='cars hidden'>";
           foreach (['_car_id_1', '_car_id_2', '_car_id_3'] as $car_id_field) {
             $car_id = $maps_row[$car_id_field];
@@ -69,9 +73,9 @@ session_start();
               echo "</section>";
             }
           }
-          // Close cars section
+          // Закрытие секции вывода автомобилей в филиале
           echo "</section>";
-          // Close map section
+          // Закрытие секции филиала на карте
           echo "</section>";
         }
 

@@ -25,15 +25,18 @@ if (!isset($_SESSION["user_id"])) {
 
         $user_id = $_SESSION['user_id'];
 
+        // Получаем информацию о бронированиях пользователя
         $booking_sql = "SELECT date_start, date_end, price, _booking_id, _car_id, _branch_id FROM booking WHERE _user_id = ?";
         $stmt_booking = $conn->prepare($booking_sql);
         $stmt_booking->bind_param("i", $user_id);
         $stmt_booking->execute();
         $result_booking = $stmt_booking->get_result();
 
+        // Если нет бронирований, выводим сообщение об этом
         if ($result_booking->num_rows < 1) {
           echo "<h2>В истории аренды пока ничего нет.</h2>";
         } else {
+          // Выводим информацию о каждом бронировании
           while ($booking_info = $result_booking->fetch_assoc()) {
             $date_start = $booking_info['date_start'];
             $date_end = $booking_info['date_end'];
@@ -41,11 +44,13 @@ if (!isset($_SESSION["user_id"])) {
             $car_id = $booking_info['_car_id'];
             $branch_id = $booking_info['_branch_id'];
 
+            // Вычисляем продолжительность аренды
             $datetime_start = new DateTime($date_start);
             $datetime_end = new DateTime($date_end);
             $interval = $datetime_start->diff($datetime_end);
             $num_days = $interval->days;
 
+            // Получаем детали автомобиля по его идентификатору
             $car_sql = "SELECT mark, model, price, class FROM cars WHERE _car_id = ?";
             $stmt_car = $conn->prepare($car_sql);
             $stmt_car->bind_param("i", $car_id);
@@ -53,6 +58,7 @@ if (!isset($_SESSION["user_id"])) {
             $result_car = $stmt_car->get_result();
             $car_details = $result_car->fetch_assoc();
 
+            // Получаем информацию о филиале по его идентификатору
             $branch_sql = "SELECT name FROM branches WHERE _branch_id = ?";
             $stmt_branch = $conn->prepare($branch_sql);
             $stmt_branch->bind_param("i", $branch_id);
@@ -60,6 +66,7 @@ if (!isset($_SESSION["user_id"])) {
             $result_branch = $stmt_branch->get_result();
             $branch_details = $result_branch->fetch_assoc();
 
+            // Выводим информацию о бронировании и автомобиле
             echo "
             <section class='item'>
               <div class='card-body'>
@@ -70,23 +77,23 @@ if (!isset($_SESSION["user_id"])) {
                 <img src='./assets/index/cars/" . $car_details['mark'] . " " . $car_details['model'] . ".png' alt='превью машины'>
               </div>
               <div class='group'>
-                <p role='label'>Код бронирования</p>
+                <p role='label'>Класс автомобиля</p>
                 <p>";
             echo $car_details['class'] == 'premium' ? 'Премиум' : 'Эконом';
             echo "
                 </p>
               </div>
               <div class='group'>
-                <p role='label'>Стоимость бронирования</p>
+                <p role='label'>Стоимость аренды</p>
                 <p>" . number_format($car_details['price'], 0, '', ' ') . " ₽ / день</p>
               </div>
               <div class='group'>
-                <p role='label'>Номер заказа</p>
+                <p role='label'>Номер бронирования</p>
                 <p>" . $booking_info['_booking_id'] . "</p>
               </div>
               <div class='group'>
                 <p role='label'>Дата</p>
-                <p>" . $datetime_start->format('d.m.Y') . " - " . $datetime_end->format('d.m.Y') . " (" . $num_days . " д.)</p>
+                <p>" . $datetime_start->format('d.m.Y') . " - " . $datetime_end->format('d.m.Y') . " (" . $num_days . " дн.)</p>
               </div>
               <div class='group'>
                 <p role='label'>Филиал</p>
@@ -102,6 +109,7 @@ if (!isset($_SESSION["user_id"])) {
           }
         }
 
+        // Закрываем подготовленные запросы
         $stmt_car->close();
         $stmt_branch->close();
         $stmt_booking->close();
