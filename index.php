@@ -45,7 +45,7 @@ $result = $conn->query($sql);
 
       <?php require_once './el-header.php'; ?>
 
-      <img src="./assets/index/ИНДЕКС ДРАЙВ.png" alt="ИНДЕКС ДРАЙВ превью-текст">
+      <img src="./assets/index/index-drive-preview-text.png" alt="ИНДЕКС ДРАЙВ превью-текст">
       <div class="search-con">
         <p class="fw-b">На любой случай — <br>любой автомобиль</p>
         <p class="fw-sb">Аренда эконом и премиум автомобилей в Перми онлайн.</p>
