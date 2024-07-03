@@ -169,7 +169,7 @@ if (!isset($_SESSION["user_id"])) {
                 </select>
               </div>
             </div>
-            <img src="./assets/booking/payment-transparency.png"
+            <img loading='lazy' src="./assets/booking/payment-transparency.png"
               alt="Отмена аренды без штрафов Бесплатно * до 24 часов до старта аренды">
           </div>
           <button name="book" class="btn-primary" type="submit">Арендовать</button>

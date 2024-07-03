@@ -48,11 +48,11 @@ session_start();
           echo "<address><p>"
             . $maps_row['name']
             . "</p>"
-            . "<img src='./assets/branches/"
+            . "<img loading='lazy' src='./assets/branches/"
             // . $maps_row['name']
             . $nameTranslations[$maps_row['name']]
             . ".png' alt='филиал на карте'></address>";
-          echo "<img src='assets/icons/arrow-down.png' alt='посмотреть доступные в филиале машины'>";
+          echo "<img loading='lazy' src='assets/icons/arrow-down.png' alt='посмотреть доступные в филиале машины'>";
 
           // Начало секции вывода автомобилей в филиале
           echo "<section class='cars hidden'>";
@@ -61,16 +61,16 @@ session_start();
             if (isset($cars[$car_id])) {
               $car = $cars[$car_id];
               echo "<section class='car'>";
-              echo "<img src='./assets/index/cars/" . $car['mark'] . " " . $car['model'] . ".png' alt='превью'>";
+              echo "<img loading='lazy' src='./assets/index/cars/" . $car['mark'] . " " . $car['model'] . ".png' alt='превью'>";
               echo "<div class='car-text-body'>";
               echo "<h4>" . $car['mark'] . " " . $car['model'] . "</h4>";
-              echo "<div class='qualities'><img src='./assets/icons/premium.png' alt='класс: премиум'>";
+              echo "<div class='qualities'><img loading='lazy' src='./assets/icons/premium.png' alt='класс: премиум'>";
               echo "<div class='year'>";
-              echo "<img src='./assets/icons/year.png' alt='иконка календаря символизирующая год'>";
+              echo "<img loading='lazy' src='./assets/icons/year.png' alt='иконка календаря символизирующая год'>";
               echo "<p class='faded-text'>" . $car['year'] . "</p>";
               echo "</div>";
               echo "<div class='rating'>";
-              echo "<img src='./assets/icons/rating.png' alt='иконка пустой звезды символизирующая рейтинг'>";
+              echo "<img loading='lazy' src='./assets/icons/rating.png' alt='иконка пустой звезды символизирующая рейтинг'>";
               echo "<p class='faded-text'>" . $car['rating'] . "</p>";
               echo "</div>";
               echo "</div>";

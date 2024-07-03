@@ -109,21 +109,21 @@ $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
           echo "
           <section class='car'>
-              <img src='./assets/index/cars/" . $row['mark'] . ' ' . $row['model'] . ".png' alt='превью'>
+              <img loading='lazy' src='./assets/index/cars/" . $row['mark'] . ' ' . $row['model'] . ".png' alt='превью'>
               <div class='car-text-body'>
                   <h4>" . $row['mark'] . ' ' . $row['model'] . "</h4>
                   <div class='qualities'>";
           // Добавляем значок для премиум класса, если автомобиль премиум
           if ($row['class'] == 'premium') {
-            echo "<img src='./assets/icons/premium.png' alt='класс: премиум'>";
+            echo "<img loading='lazy' src='./assets/icons/premium.png' alt='класс: премиум'>";
           }
           echo "
                     <div class='year'>
-                        <img src='./assets/icons/year.png' alt='иконка календаря символизирующая год'>
+                        <img loading='lazy' src='./assets/icons/year.png' alt='иконка календаря символизирующая год'>
                         <p class='faded-text'>" . $row['year'] . "</p>
                     </div>
                     <div class='rating'>
-                        <img src='./assets/icons/rating.png' alt='иконка пустой звезды символизирующая рейтинг'>
+                        <img loading='lazy' src='./assets/icons/rating.png' alt='иконка пустой звезды символизирующая рейтинг'>
                         <p class='faded-text'>" . $row['rating'] . "</p>
                     </div>
                 </div>
@@ -139,9 +139,9 @@ $result = $conn->query($sql);
         // Выводим стандартные секции, если форма поиска не отправлена
         echo '
         <section class="trust">
-          <img src="./assets/index/sales.svg"
+          <img loading='lazy' src="./assets/index/sales.svg"
               alt="доверие: Отмена аренды без штрафов Бесплатно * до 24 часов до старта аренды">
-          <img src="./assets/index/payment-transparency.svg"
+          <img loading='lazy' src="./assets/index/payment-transparency.svg"
               alt="акции: Скидки на долгосрочную аренду до 25% * за каждые 3 дня +5%">
         </section>';
 
@@ -150,21 +150,21 @@ $result = $conn->query($sql);
         while ($row = $result->fetch_assoc()) {
           echo "
           <section class='car'>
-              <img src='./assets/index/cars/" . $row['mark'] . ' ' . $row['model'] . ".png' alt='превью'>
+              <img loading='lazy' src='./assets/index/cars/" . $row['mark'] . ' ' . $row['model'] . ".png' alt='превью'>
               <div class='car-text-body'>
                   <h4>" . $row['mark'] . ' ' . $row['model'] . "</h4>
                   <div class='qualities'>";
           // Добавляем значок для премиум класса, если автомобиль премиум
           if ($row['class'] == 'premium') {
-            echo "<img src='./assets/icons/premium.png' alt='класс: премиум'>";
+            echo "<img loading='lazy' src='./assets/icons/premium.png' alt='класс: премиум'>";
           }
           echo "
                     <div class='year'>
-                        <img src='./assets/icons/year.png' alt='иконка календаря символизирующая год'>
+                        <img loading='lazy' src='./assets/icons/year.png' alt='иконка календаря символизирующая год'>
                         <p class='faded-text'>" . $row['year'] . "</p>
                     </div>
                     <div class='rating'>
-                        <img src='./assets/icons/rating.png' alt='иконка пустой звезды символизирующая рейтинг'>
+                        <img loading='lazy' src='./assets/icons/rating.png' alt='иконка пустой звезды символизирующая рейтинг'>
                         <p class='faded-text'>" . $row['rating'] . "</p>
                     </div>
                 </div>
@@ -183,7 +183,7 @@ $result = $conn->query($sql);
         <div class="heading">
           <h2>Новости</h2>
           <a href="#">
-            <img src="./assets/icons/arrow-up.png" alt="стрелка вверх: вернуться наверх">
+            <img loading='lazy' src="./assets/icons/arrow-up.png" alt="стрелка вверх: вернуться наверх">
           </a>
         </div>
         <section class="news-list">

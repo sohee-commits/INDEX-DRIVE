@@ -74,7 +74,7 @@ if (!isset($_SESSION["user_id"])) {
                   <p class='car-name'>" . $car_details['mark'] . " " . $car_details['model'] . "</p>
                   <a href='booking.php' type='submit' class='red'>Арендовать снова</a>
                 </div>
-                <img src='./assets/index/cars/" . $car_details['mark'] . " " . $car_details['model'] . ".png' alt='превью машины'>
+                <img loading='lazy' src='./assets/index/cars/" . $car_details['mark'] . " " . $car_details['model'] . ".png' alt='превью машины'>
               </div>
               <div class='group'>
                 <p role='label'>Класс автомобиля</p>

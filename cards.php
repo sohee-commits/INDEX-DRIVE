@@ -133,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
         $conn->close(); // Закрываем соединение с базой данных
         ?>
       </section>
-      <img src="./assets/cards/poster.svg" alt="Индекс Драйв: На любой случай любой автомобиль">
+      <img loading='lazy' src="./assets/cards/poster.svg" alt="Индекс Драйв: На любой случай любой автомобиль">
     </main>
 
     <?php require_once './el-footer.php'; ?>
