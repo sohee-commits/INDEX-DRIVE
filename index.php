@@ -215,7 +215,8 @@ $result = $conn->query($sql);
 
     </main>
 
-    <?php require_once './el-footer.php'; // Подключаем футер страницы ?>
+    <?php require_once './el-footer.php'; ?>
+    <script src="./scripts/getCarData.js"></script>
 
   </body>
 
