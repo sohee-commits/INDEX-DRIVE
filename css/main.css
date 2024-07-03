@@ -189,6 +189,8 @@ header {
 	align-items: center;
 	justify-content: space-between;
 	gap: var(--sz-m);
+
+	background-color: var(--white);
 }
 
 header ul,

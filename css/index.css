@@ -29,6 +29,10 @@ button.btn-secondary:hover {
 	width: 100%;
 }
 
+header {
+	background: none;
+}
+
 header * {
 	color: var(--white);
 	font-weight: 500;
